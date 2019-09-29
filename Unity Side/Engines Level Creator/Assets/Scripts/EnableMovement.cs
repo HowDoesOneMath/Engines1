@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnableMovement : EdittingMode
 {
     int DESTROY_BUTTON;
-
+    
     public EnableMovement(DirtyFlagController controller) : base(controller)
     {
         DESTROY_BUTTON = TheManager.TM.RIGHT_MOUSE;
