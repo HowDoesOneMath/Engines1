@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CMovement : BaseCommand
+public class CMovement : SingularAction
 {
     public CMovement(GameObject puppet, Vector3 position) : base(puppet)
     {
