@@ -7,7 +7,7 @@
 struct PLUGIN_API DataStruct
 {
 	int ObjectType;
-	int PoolNumber;
+	//int PoolNumber;
 
 	float TransformData[9];
 };
@@ -53,6 +53,8 @@ public:
 	void LoadFileClose();
 
 	void ClearMem();
+
+	void CloseAll();
 
 	void LoadVersion1(std::ifstream* loadFile, std::string* parser);
 };

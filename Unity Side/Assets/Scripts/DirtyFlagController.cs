@@ -7,15 +7,28 @@ public class DirtyFlagController : MonoBehaviour
 {
     static EdittingMode editMode;
 
+    public List<Thingy> instantiableObjects;
+
     private void Awake()
     {
-        TheManager.TM.Controls.Add(this);   
+        TheManager.TM.Controls.Add(this);
+        FileFuncs.CloseAll();
     }
 
     void Update()
     {
         if (TheManager.TM.SetDirty(true))
         {
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                FileSave fs = new FileSave("ThisIsIt");
+                fs.Save();
+            }
+            if (Input.GetKeyUp(KeyCode.O))
+            {
+                FileLoad fl = new FileLoad("ThisIsIt");
+                fl.Load();
+            }
             if (editMode == null)
             {
                 ButtonReceiving();
@@ -44,6 +57,19 @@ public class DirtyFlagController : MonoBehaviour
         {
 
         }
+    }
+
+    public Thingy TryForType(System.Type t)
+    {
+        for (int i = 0; i < instantiableObjects.Count; ++i)
+        {
+            if (instantiableObjects[i].GetType() == t)
+            {
+                return Instantiate(instantiableObjects[i]);
+            }
+        }
+
+        return null;
     }
 
     private void LateUpdate()

@@ -3,10 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Thingy : MonoBehaviour
+public abstract class Thingy : MonoBehaviour
 {
-    private void OnTransformParentChanged()
+    public TypeOfThingy tot { get; protected set; }
+
+    private void Awake()
     {
-        Debug.Log("CHANGED! " + name);
+        PseudoAwake();
+        PoolQueue.PQ.AddThingToQueue(this);
     }
+
+    public virtual void PseudoAwake()
+    {
+        gameObject.SetActive(true);
+        TheManager.TM.Thingies.Add(this);
+    }
+
+    public virtual void PseudoDestroy()
+    {
+        gameObject.SetActive(false);
+        TheManager.TM.Thingies.Remove(this);
+    }
+}
+
+public enum TypeOfThingy
+{
+    Test1,
+    Test2
 }

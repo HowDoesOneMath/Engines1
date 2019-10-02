@@ -46,3 +46,8 @@ PLUGIN_API void LoadFileClose()
 {
 	fs.LoadFileClose();
 }
+
+PLUGIN_API void CloseAll()
+{
+	return fs.CloseAll();
+}

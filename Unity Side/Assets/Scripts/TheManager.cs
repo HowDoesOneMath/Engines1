@@ -105,6 +105,26 @@ public sealed class TheManager
         return false;
     }
 
+    public Thingy GetThingyOfType(System.Type t)
+    {
+        for (int i = 0; i < Controls.Count; i++)
+        {
+            Thingy thing = Controls[i].TryForType(t);
+            if (thing != null)
+                return thing;
+        }
+
+        return null;
+    }
+
+    public void DestroyAll()
+    {
+        for (int i = Thingies.Count - 1; i >= 0; --i)
+        {
+            Thingies[i].PseudoDestroy();
+        }
+    }
+
     #endregion
 
     public int LEFT_MOUSE { get; } = 0;

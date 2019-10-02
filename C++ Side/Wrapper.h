@@ -24,6 +24,8 @@ extern "C"
 	 
 	PLUGIN_API void LoadFileClose();
 
+	PLUGIN_API void CloseAll();
+
 #ifdef __cplusplus
 }
 #endif

@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseCommand
+public class BaseCommand
 {
-    protected GameObject go = null;
-
-    protected BaseCommand(GameObject puppet)
+    protected BaseCommand()
     {
+        actions = new List<SingularAction>();
         TheManager.TM.AddCommand(this);
-        go = puppet;
     }
 
     public bool Done { get; set; } = false;
 
-    protected abstract void PerformUndo();
+    List<SingularAction> actions;
 
-    protected abstract void PerformRedo();
+    public void AddAction(SingularAction sa)
+    {
+        actions.Add(sa);
+    }
+
+    protected void PerformUndo()
+    {
+        for (int i = actions.Count - 1; i >= 0; --i)
+        {
+            actions[i].Undo();
+        }
+    }
+
+    protected void PerformRedo()
+    {
+        for (int i = 0; i < actions.Count; ++i)
+        {
+            actions[i].Redo();
+        }
+    }
 
     public void Undo()
     {

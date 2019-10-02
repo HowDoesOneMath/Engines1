@@ -16,8 +16,9 @@ void FileSave::SaveFileOpen(char* filename, int version, int arrSize)
 
 		std::string path = filePath;
 		path.append(filename);
+		path.append(".txt");
 
-		saveFile.open(filename);
+		saveFile.open(path);
 
 		if (saveFile.is_open())
 		{
@@ -45,7 +46,7 @@ void FileSave::SaveFileClose()
 		for (int i = 0; i < datFile.arrSize; ++i)
 		{
 			saveFile << std::to_string(datFile.data[i].ObjectType) << "\n";
-			saveFile << std::to_string(datFile.data[i].PoolNumber) << "\n";
+			//saveFile << std::to_string(datFile.data[i].PoolNumber) << "\n";
 			for (int j = 0; j < 9; ++j)
 			{
 				saveFile << std::to_string(datFile.data[i].TransformData[j]) << "/";
@@ -69,6 +70,8 @@ void FileSave::LoadFileOpen(char* filename)
 
 		std::string path = filePath;
 		path.append(filename);
+
+		path.append(".txt");
 
 		loadFile.open(path);
 
@@ -138,6 +141,12 @@ void FileSave::ClearMem()
 	}
 }
 
+void FileSave::CloseAll()
+{
+	loadFile.close();
+	saveFile.close();
+}
+
 //Expected format:
 //
 //VersionNumber (int) - the version of the file
@@ -158,8 +167,8 @@ void FileSave::LoadVersion1(std::ifstream* loadFile, std::string* parser)
 	{
 		std::getline(*loadFile, *parser);
 		datFile.data[i].ObjectType = std::stoi(*parser);
-		std::getline(*loadFile, *parser);
-		datFile.data[i].PoolNumber = std::stoi(*parser);
+		//std::getline(*loadFile, *parser);
+		//datFile.data[i].PoolNumber = std::stoi(*parser);
 
 		std::getline(*loadFile, *parser);
 		std::stringstream ss(*parser);
