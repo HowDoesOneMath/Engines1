@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BaseCommand
 {
-    protected BaseCommand(GameObject puppet)
+    protected BaseCommand()
     {
+        actions = new List<SingularAction>();
         TheManager.TM.AddCommand(this);
     }
 
