@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4080584513183521898}
+  - component: {fileID: 8771113401038730205}
+  - component: {fileID: 328888731882910909}
   m_Layer: 0
   m_Name: watertower
   m_TagString: Untagged
@@ -31,6 +33,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8771113401038730205
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079311564967079545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.449898, y: 9.177969, z: 4.8885174}
+  m_Center: {x: -0.0025262833, y: 4.652362, z: -0.27455425}
+--- !u!65 &328888731882910909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079311564967079545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9825277, y: 5.660801, z: 7.009728}
+  m_Center: {x: -0.015034199, y: 12.071093, z: -0.012849569}
 --- !u!1 &6842716649765571556
 GameObject:
   m_ObjectHideFlags: 0

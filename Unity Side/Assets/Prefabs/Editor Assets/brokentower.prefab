@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3074197637137336253}
+  - component: {fileID: 6226677637879278849}
   m_Layer: 0
   m_Name: brokentower
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6226677637879278849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085984314041595310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.086936, y: 9.375814, z: 1.9156985}
+  m_Center: {x: -0.00000023841858, y: 4.763345, z: -0.06312871}
 --- !u!1 &5548062014083207219
 GameObject:
   m_ObjectHideFlags: 0
