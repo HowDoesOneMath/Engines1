@@ -45,5 +45,15 @@ public sealed class Thingy : MonoBehaviour
 public enum TypeOfThingy
 {
     Test1,
-    Test2
+    Test2,
+    Tree,
+    StreetLamp,
+    Gate,
+    Fence_Metal,
+    Cactus,
+    BrokenTower,
+    WaterTower,
+    Rock1,
+    Rock2,
+    Rock3
 }
