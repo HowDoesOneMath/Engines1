@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class IndividualQueue
 {
-    public IndividualQueue(System.Type poolType, TypeOfThingy thingType)
+    public IndividualQueue(TypeOfThingy thingType)
     {
         ttype = thingType;
-        ptype = poolType;
         things = new List<Thingy>();
     }
 
-    public System.Type ptype { get; private set; }
     public TypeOfThingy ttype { get; private set; }
 
     public List<Thingy> things { get; private set; }
@@ -39,7 +37,7 @@ public class PoolQueue
 
         for (int i = 0; i < IQS.Count; i++)
         {
-            if (thing.GetType() == IQS[i].ptype)
+            if (thing.tot == IQS[i].ttype)
             {
                 IQS[i].things.Add(thing);
                 added = true;
@@ -49,34 +47,9 @@ public class PoolQueue
 
         if (!added)
         {
-            IQS.Add(new IndividualQueue(thing.GetType(), thing.tot));
+            IQS.Add(new IndividualQueue(thing.tot));
             IQS[IQS.Count - 1].things.Add(thing);
         }
-    }
-
-    public Thingy RequestThing(System.Type thingType)
-    {
-        for (int i = 0; i < IQS.Count; i++)
-        {
-            if (IQS[i].ptype == thingType)
-            {
-                int I = i;
-                i = IQS.Count;
-                for (int j = 0; j < IQS[I].things.Count; j++)
-                {
-                    if (!IQS[I].things[I].gameObject.activeSelf)
-                    {
-                        IQS[I].things[I].PseudoAwake();
-                        return IQS[I].things[I];
-                    }
-                }
-
-                Thingy thing = TheManager.TM.GetThingyOfType(thingType);
-                return thing;
-            }
-        }
-
-        return null;
     }
 
     public Thingy RequestThing(TypeOfThingy tot)
@@ -85,23 +58,28 @@ public class PoolQueue
         {
             if (IQS[i].ttype == tot)
             {
-                System.Type stype = IQS[i].ptype;
                 int I = i;
                 i = IQS.Count;
-                for (int j = 0; j < IQS[I].things.Count; j++)
-                {
-                    if (!IQS[I].things[j].gameObject.activeSelf)
-                    {
-                        IQS[I].things[j].PseudoAwake();
-                        return IQS[I].things[j];
-                    }
-                }
-
-                Thingy thing = TheManager.TM.GetThingyOfType(stype);
-                return thing;
+                return RequestFromSlot(tot, I);
             }
         }
 
-        return null;
+        IQS.Add(new IndividualQueue(tot));
+            return RequestFromSlot(tot, IQS.Count - 1);
+    }
+
+    Thingy RequestFromSlot(TypeOfThingy tot, int i)
+    {
+        for (int j = 0; j < IQS[i].things.Count; j++)
+        {
+            if (!IQS[i].things[j].gameObject.activeSelf)
+            {
+                IQS[i].things[j].PseudoAwake();
+                return IQS[i].things[j];
+            }
+        }
+
+        Thingy thing = TheManager.TM.GetThingyOfType(IQS[i].ttype);
+        return thing;
     }
 }

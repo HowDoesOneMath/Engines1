@@ -29,6 +29,14 @@ public class DirtyFlagController : MonoBehaviour
                 FileLoad fl = new FileLoad("ThisIsIt");
                 fl.Load();
             }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                TheManager.TM.Redo();
+            }
+            if (Input.GetKeyUp(KeyCode.U))
+            {
+                TheManager.TM.Undo();
+            }
             if (editMode == null)
             {
                 ButtonReceiving();
@@ -59,11 +67,11 @@ public class DirtyFlagController : MonoBehaviour
         }
     }
 
-    public Thingy TryForType(System.Type t)
+    public Thingy TryForType(TypeOfThingy tot)
     {
         for (int i = 0; i < instantiableObjects.Count; ++i)
         {
-            if (instantiableObjects[i].GetType() == t)
+            if (instantiableObjects[i].tot == tot)
             {
                 return Instantiate(instantiableObjects[i]);
             }

@@ -105,11 +105,11 @@ public sealed class TheManager
         return false;
     }
 
-    public Thingy GetThingyOfType(System.Type t)
+    public Thingy GetThingyOfType(TypeOfThingy tot)
     {
         for (int i = 0; i < Controls.Count; i++)
         {
-            Thingy thing = Controls[i].TryForType(t);
+            Thingy thing = Controls[i].TryForType(tot);
             if (thing != null)
                 return thing;
         }

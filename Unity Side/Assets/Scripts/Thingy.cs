@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public abstract class Thingy : MonoBehaviour
+public sealed class Thingy : MonoBehaviour
 {
-    public TypeOfThingy tot { get; protected set; }
+    [SerializeField]
+    TypeOfThingy tt = TypeOfThingy.Test1;
+    public TypeOfThingy tot { get { return tt; } }
+    public bool thingyActive { get; set; } = false;
 
     private void Awake()
     {
@@ -13,16 +16,29 @@ public abstract class Thingy : MonoBehaviour
         PoolQueue.PQ.AddThingToQueue(this);
     }
 
-    public virtual void PseudoAwake()
+    public void PseudoAwake()
     {
-        gameObject.SetActive(true);
-        TheManager.TM.Thingies.Add(this);
+        if (!thingyActive)
+        {
+            Flip();
+            gameObject.SetActive(true);
+            TheManager.TM.Thingies.Add(this);
+        }
     }
 
-    public virtual void PseudoDestroy()
+    public void PseudoDestroy()
     {
-        gameObject.SetActive(false);
-        TheManager.TM.Thingies.Remove(this);
+        if (thingyActive)
+        {
+            Flip();
+            gameObject.SetActive(false);
+            TheManager.TM.Thingies.Remove(this);
+        }
+    }
+
+    public void Flip()
+    {
+        thingyActive = !thingyActive;
     }
 }
 
