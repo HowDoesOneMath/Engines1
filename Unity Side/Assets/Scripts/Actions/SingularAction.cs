@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SingularAction : MonoBehaviour
+public abstract class SingularAction
 {
     protected Thingy go;
 

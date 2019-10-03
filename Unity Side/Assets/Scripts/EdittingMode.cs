@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EdittingMode
 {
-    Vector3 mousePosition;
+    protected Vector3 mousePosition;
 
     protected EdittingMode(DirtyFlagController controller)
     {
@@ -15,5 +15,28 @@ public abstract class EdittingMode
 
     DirtyFlagController dcf;
 
-    public abstract bool Update();
+    public virtual bool Update()
+    {
+        return true;
+    }
+
+    public virtual bool FixedUpdate()
+    {
+        return true;
+    }
+
+    public virtual bool LateUpdate()
+    {
+        return true;
+    }
+           
+    public virtual bool OnPreRender()
+    {
+        return true;
+    }
+           
+    public virtual bool OnPostRender()
+    {
+        return true;
+    }
 }
