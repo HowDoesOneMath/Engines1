@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 705555149826575552}
-  - component: {fileID: 8647284103524077104}
-  - component: {fileID: 6237905675186504307}
-  - component: {fileID: 362630887632448537}
   m_Layer: 0
   m_Name: bridge
   m_TagString: Untagged
@@ -34,45 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8647284103524077104
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4580718768514842323}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 55.84001, y: 1.8245449, z: 11.088551}
-  m_Center: {x: -68.82842, y: -0.841424, z: 0.0734756}
---- !u!65 &6237905675186504307
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4580718768514842323}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 55.84001, y: 0.8862157, z: 1.6979284}
-  m_Center: {x: -68.82842, y: 0.5889456, z: -4.621835}
---- !u!65 &362630887632448537
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4580718768514842323}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 55.84001, y: 0.8862157, z: 1.9063768}
-  m_Center: {x: -68.82842, y: 0.5889456, z: 4.630775}
 --- !u!1 &8042780072256625486
 GameObject:
   m_ObjectHideFlags: 0

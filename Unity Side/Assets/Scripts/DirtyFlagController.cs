@@ -1,15 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public struct ModeStruct
+{
+    public EnableMainMenu main;
+    public EnableMovement move;
+}
 
 [DisallowMultipleComponent]
 public class DirtyFlagController : MonoBehaviour
 {
-    static EdittingMode editMode;
+    static EdittingMode edits;
+    public EdittingMode editMode
+    {
+        get
+        {
+            if (edits == null)
+            {
+                EnableMainMenu enabmen = gameObject.AddComponent<EnableMainMenu>();
+                enabmen.SetEnableMainMenu(this, null, modes.main.activeOnSwitch);
+                edits = enabmen;
+            }
+            return edits;
+        }
+        set { edits = value; }
+    }
 
     public List<Thingy> instantiableObjects;
 
+    public ModeStruct modes;
+
     bool chosen = false;
+
+    public bool RemovePrior { get; set; } = false;
 
     private void Awake()
     {
@@ -21,18 +47,21 @@ public class DirtyFlagController : MonoBehaviour
     {
         if (chosen && editMode != null)
         {
-            if (!editMode.FixedUpdate())
-            {
-                editMode = null;
-            }
+            //if (!editMode.PseudoFixedUpdate())
+            //{
+            //    editMode = null;
+            //}
+            CheckPrior();
+            editMode.PseudoFixedUpdate();
         }
     }
 
     void Update()
     {
         chosen = TheManager.TM.SetDirty(true);
-        if (chosen)
+        if (chosen && editMode != null)
         {
+            CheckPrior();
             //if (Input.GetKeyUp(KeyCode.P))
             //{
             //    FileSave fs = new FileSave("ThisIsIt");
@@ -51,34 +80,35 @@ public class DirtyFlagController : MonoBehaviour
             //{
             //    TheManager.TM.Undo();
             //}
-            if (editMode == null)
-            {
-                ButtonReceiving();
-            }
-            else
-            {
-                if (!editMode.Update())
-                {
-                    editMode = null;
-                }
-            }
+            //if (editMode == null)
+            //{
+            //    ButtonReceiving();
+            //}
+            //else
+            //{
+            //    if (!editMode.PseudoUpdate())
+            //    {
+            //        editMode = null;
+            //    }
+            //}
+            editMode.PseudoUpdate();
         }
     }
 
     void ButtonReceiving()
     {
-        if (Input.GetMouseButton(TheManager.TM.LEFT_MOUSE))
-        {
-
-        }
-        if (Input.GetMouseButton(TheManager.TM.RIGHT_MOUSE))
-        {
-            editMode = new EnableMovement(this, TheManager.TM.RIGHT_MOUSE, transform);
-        }
-        if (Input.GetMouseButton(TheManager.TM.MIDDLE_MOUSE))
-        {
-
-        }
+        //if (Input.GetMouseButton(TheManager.TM.LEFT_MOUSE))
+        //{
+        //
+        //}
+        //if (Input.GetMouseButton(TheManager.TM.RIGHT_MOUSE))
+        //{
+        //    editMode = new EnableMovement(this, TheManager.TM.RIGHT_MOUSE, transform);
+        //}
+        //if (Input.GetMouseButton(TheManager.TM.MIDDLE_MOUSE))
+        //{
+        //
+        //}
     }
 
     public Thingy TryForType(TypeOfThingy tot)
@@ -98,10 +128,12 @@ public class DirtyFlagController : MonoBehaviour
     {
         if (chosen && editMode != null)
         {
-            if (!editMode.FixedUpdate())
-            {
-                editMode = null;
-            }
+            //if (!editMode.PseudoFixedUpdate())
+            //{
+            //    editMode = null;
+            //}
+            CheckPrior();
+            editMode.PseudoLateUpdate();
         }
 
         TheManager.TM.SetDirty(false);
@@ -111,10 +143,12 @@ public class DirtyFlagController : MonoBehaviour
     {
         if (chosen && editMode != null)
         {
-            if (!editMode.OnPreRender())
-            {
-                editMode = null;
-            }
+            //if (!editMode.PseudoOnPreRender())
+            //{
+            //    editMode = null;
+            //}
+            CheckPrior();
+            editMode.PseudoOnPreRender();
         }
     }
 
@@ -122,15 +156,29 @@ public class DirtyFlagController : MonoBehaviour
     {
         if (chosen && editMode != null)
         {
-            if (!editMode.OnPostRender())
-            {
-                editMode = null;
-            }
+            //if (!editMode.PseudoOnPostRender())
+            //{
+            //    editMode = null;
+            //}
+            CheckPrior();
+            editMode.PseudoOnPostRender();
         }
     }
 
     private void OnDestroy()
     {
         TheManager.TM.Controls.Remove(this);
+    }
+
+    void CheckPrior()
+    {
+        if (RemovePrior)
+        {
+            RemovePrior = false;
+            EdittingMode etemp = editMode;
+            editMode = editMode.prevState;
+            Destroy(etemp);
+            editMode.ResetVals();
+        }
     }
 }

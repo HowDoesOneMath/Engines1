@@ -2,41 +2,73 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EdittingMode
+//[DisallowMultipleComponent]
+public abstract class EdittingMode : MonoBehaviour
 {
+    public List<GameObject> activeOnSwitch;
+
     protected Vector3 mousePosition;
 
-    protected EdittingMode(DirtyFlagController controller)
+    protected void SetEdittingMode(DirtyFlagController controller, EdittingMode previousState, List<GameObject> setToActive)
     {
+        prevState = previousState;
         dcf = controller;
+        dcf.editMode = this;
         mousePosition = Input.mousePosition;
         //Debug.Log(mousePosition);
+
+        activeOnSwitch = setToActive;
+
+        for (int i = 0; i < activeOnSwitch.Count; ++i)
+        {
+            activeOnSwitch[i].SetActive(true);
+        }
     }
 
-    DirtyFlagController dcf;
+    protected DirtyFlagController dcf;
+    public EdittingMode prevState { get; protected set; }
 
-    public virtual bool Update()
+    public virtual bool PseudoUpdate()
     {
         return true;
     }
 
-    public virtual bool FixedUpdate()
+    public virtual bool PseudoFixedUpdate()
     {
         return true;
     }
 
-    public virtual bool LateUpdate()
+    public virtual bool PseudoLateUpdate()
     {
         return true;
     }
            
-    public virtual bool OnPreRender()
+    public virtual bool PseudoOnPreRender()
     {
         return true;
     }
            
-    public virtual bool OnPostRender()
+    public virtual bool PseudoOnPostRender()
     {
         return true;
+    }
+
+    protected void GoBack()
+    {
+        dcf.RemovePrior = true;
+        for (int i = 0; i < activeOnSwitch.Count; ++i)
+        {
+            activeOnSwitch[i].SetActive(false);
+        }
+    }
+
+    public virtual void ResetVals()
+    {
+        mousePosition = Input.mousePosition;
+
+        for (int i = 0; i < activeOnSwitch.Count; ++i)
+        {
+            activeOnSwitch[i].SetActive(true);
+        }
     }
 }

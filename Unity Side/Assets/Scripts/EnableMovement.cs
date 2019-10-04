@@ -1,51 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public struct EditMovementSettings
+{
+    public float MoveSpeed;
+    public float TurnSpeed;
+
+    public char FORWARD;
+    public char LEFT;
+    public char BACKWARD;
+    public char RIGHT;
+    public char UP;
+    public char DOWN;
+
+    public Vector2 mouseSensitivityAxes;
+}
 
 public class EnableMovement : EdittingMode
 {
     int DESTROY_BUTTON;
-    float MoveSpeed = 10f;
-    float TurnSpeed = 90f;
 
-    KeyCode FORWARD = KeyCode.W;
-    KeyCode LEFT = KeyCode.A;
-    KeyCode BACKWARD = KeyCode.S;
-    KeyCode RIGHT = KeyCode.D;
-    KeyCode UP = KeyCode.E;
-    KeyCode DOWN = KeyCode.Q;
+    public EditMovementSettings moveSets;
 
     Transform MoveThingy;
     
-    public EnableMovement(DirtyFlagController controller, int buttonToDestroy, Transform thingToMove) : base(controller)
+    public void SetEnableMovement(DirtyFlagController controller, int buttonToDestroy, Transform thingToMove, EdittingMode prev, List<GameObject> setToActive, EditMovementSettings esets)
     {
+        SetEdittingMode(controller, prev, setToActive);
+
+        moveSets = esets;
+
         DESTROY_BUTTON = buttonToDestroy;
         MoveThingy = thingToMove;
     }
 
-    public override bool FixedUpdate()
+    public override bool PseudoFixedUpdate()
     {
-        return base.FixedUpdate();
+        return base.PseudoFixedUpdate();
     }
 
-    public override bool Update()
+    public override bool PseudoUpdate()
     {
         if (!Input.GetMouseButton(DESTROY_BUTTON))
         {
-            //Debug.Log("DESTROYED");
+            GoBack();
             return false;
         }
 
         MoveThingy.position += ReceiveMovement() * Time.deltaTime;
 
-        Vector3 eulers = MoveThingy.rotation.eulerAngles + ReceiveRotation()  * Time.deltaTime * TurnSpeed;
+        Vector3 eulers = MoveThingy.rotation.eulerAngles + ReceiveRotation()  * Time.deltaTime * moveSets.TurnSpeed;
         eulers.x = Mod(eulers.x, 180f, -180f);
         eulers.x = Mathf.Clamp(eulers.x, -90f, 90f);
         eulers.y = Mod(eulers.y, 360f, 0);
 
         MoveThingy.rotation = Quaternion.Euler(eulers);
 
-        return base.Update();
+        return base.PseudoUpdate();
     }
 
     public Vector3 ReceiveMovement()
@@ -53,34 +67,34 @@ public class EnableMovement : EdittingMode
         Vector3 movement = Vector3.zero;
         Quaternion yrot = Quaternion.Euler(0, MoveThingy.rotation.eulerAngles.y, 0);
 
-        if (Input.GetKey(FORWARD))
+        if (Input.GetKey((KeyCode)moveSets.FORWARD))
         {
             movement += yrot * Vector3.forward;
         }
-        if (Input.GetKey(LEFT))
+        if (Input.GetKey((KeyCode)moveSets.LEFT))
         {
             movement -= yrot * Vector3.right;
         }
-        if (Input.GetKey(BACKWARD))
+        if (Input.GetKey((KeyCode)moveSets.BACKWARD))
         {
             movement -= yrot * Vector3.forward;
         }
-        if (Input.GetKey(RIGHT))
+        if (Input.GetKey((KeyCode)moveSets.RIGHT))
         {
             movement += yrot * Vector3.right;
         }
-        if (Input.GetKey(UP))
+        if (Input.GetKey((KeyCode)moveSets.UP))
         {
             movement += Vector3.up;
         }
-        if (Input.GetKey(DOWN))
+        if (Input.GetKey((KeyCode)moveSets.DOWN))
         {
             movement -= Vector3.up;
         }
 
         movement = Vector3.ClampMagnitude(movement, 1);
 
-        movement *= MoveSpeed;
+        movement *= moveSets.MoveSpeed;
 
         return movement;
     }
@@ -92,8 +106,8 @@ public class EnableMovement : EdittingMode
         Vector3 deltaMouse = Input.mousePosition - mousePosition;
         mousePosition = Input.mousePosition;
 
-        rotate.x = deltaMouse.y;
-        rotate.y = deltaMouse.x;
+        rotate.x = deltaMouse.y * moveSets.mouseSensitivityAxes.y;
+        rotate.y = deltaMouse.x * moveSets.mouseSensitivityAxes.x;
 
         return rotate;
     }
@@ -108,18 +122,18 @@ public class EnableMovement : EdittingMode
         return Val;
     }
 
-    public override bool LateUpdate()
+    public override bool PseudoLateUpdate()
     {
-        return base.LateUpdate();
+        return base.PseudoLateUpdate();
     }
 
-    public override bool OnPreRender()
+    public override bool PseudoOnPreRender()
     {
-        return base.OnPreRender();
+        return base.PseudoOnPreRender();
     }
 
-    public override bool OnPostRender()
+    public override bool PseudoOnPostRender()
     {
-        return base.OnPostRender();
+        return base.PseudoOnPostRender();
     }
 }
