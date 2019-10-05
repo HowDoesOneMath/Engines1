@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2805984034651157584}
+  - component: {fileID: 5115872564139452134}
   m_Layer: 0
   m_Name: house_roof
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &5115872564139452134
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201196955021755971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -7620099622211437512, guid: 9f0557da6fc8b234482d2348e0d1bd50, type: 3}
 --- !u!1 &8848927841128648931
 GameObject:
   m_ObjectHideFlags: 0

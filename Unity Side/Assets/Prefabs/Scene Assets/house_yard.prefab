@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3053747822841615394}
+  - component: {fileID: 4273378436186008903}
   m_Layer: 0
   m_Name: house_yard
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &4273378436186008903
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034024698618979889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -32824320732277105, guid: 8cf95413ffdb159449a4d3d52c0ab5f8, type: 3}
 --- !u!1 &2453257396360735623
 GameObject:
   m_ObjectHideFlags: 0
