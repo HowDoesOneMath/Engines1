@@ -61,7 +61,7 @@ public class EnablePosition : EdittingMode
         {
             EnableStartPos esp = gameObject.AddComponent<EnableStartPos>();
             DeactivateOnSwitch();
-            esp.SetEnableStartPos(dcf, this, dcf.modes.sPos.activeOnSwitch, editee);
+            esp.SetEnableStartPos(dcf, this, dcf.modes.esp.activeOnSwitch, editee);
             return false;
         }
         if (Input.GetMouseButton(TheManager.TM.RIGHT_MOUSE))

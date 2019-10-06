@@ -61,7 +61,7 @@ public class EnableRotation : EdittingMode
         {
             EnableStartRot esr = gameObject.AddComponent<EnableStartRot>();
             DeactivateOnSwitch();
-            esr.SetEnableStartRot(dcf, this, dcf.modes.sRot.activeOnSwitch, editee);
+            esr.SetEnableStartRot(dcf, this, dcf.modes.esr.activeOnSwitch, editee);
             return false;
         }
         if (Input.GetMouseButton(TheManager.TM.RIGHT_MOUSE))
