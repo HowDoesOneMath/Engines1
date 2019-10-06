@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8236493728567432162}
   - component: {fileID: 8764060340621845518}
+  - component: {fileID: 8765686983420456132}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4906318510049223153}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.27}
+  m_LocalPosition: {x: -5.723145, y: 0.00000011920929, z: -3.2326689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1883411358402003162}
@@ -124,3 +125,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 58a1024a5414f3f409473e53b30e9792, type: 3}
+--- !u!114 &8765686983420456132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906318510049223153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff3a137b436f0c4088e994630d21083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tt: 4

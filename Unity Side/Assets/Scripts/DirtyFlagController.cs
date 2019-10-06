@@ -8,6 +8,11 @@ public struct ModeStruct
 {
     public EnableMainMenu main;
     public EnableMovement move;
+    public EnableTranslation trans;
+    public EnablePosition sPos;
+    public EnableRotation sRot;
+    public EnableStartPos esp;
+    public EnableStartRot esr;
 }
 
 [DisallowMultipleComponent]
@@ -29,7 +34,12 @@ public class DirtyFlagController : MonoBehaviour
         set { edits = value; }
     }
 
+    public MouseLocationGizmo mLoc;
+
+    public Camera worldCam;
+
     public List<Thingy> instantiableObjects;
+    public Thingy spawnThingy { get; set; }
 
     public ModeStruct modes;
 
@@ -69,8 +79,8 @@ public class DirtyFlagController : MonoBehaviour
             //}
             //if (Input.GetKeyUp(KeyCode.O))
             //{
-            //    FileLoad fl = new FileLoad("ThisIsIt");
-            //    fl.Load();
+            //    FileSave fs = new FileSave("ThisIsIt");
+            //    fs.Save();
             //}
             //if (Input.GetKeyUp(KeyCode.R))
             //{
@@ -180,5 +190,27 @@ public class DirtyFlagController : MonoBehaviour
             Destroy(etemp);
             editMode.ResetVals();
         }
+    }
+
+    public void ForceUndo()
+    {
+        TheManager.TM.Undo();
+    }
+
+    public void ForceRedo()
+    {
+        TheManager.TM.Redo();
+    }
+
+    public void ForceSave()
+    {
+        FileSave fs = new FileSave("SaveFile");
+        fs.Save();
+    }
+
+    public void ForceLoad()
+    {
+        FileLoad fl = new FileLoad("LoadFile");
+        fl.Load();
     }
 }

@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 6225409804375158791}
   - component: {fileID: 6225409804375158790}
   - component: {fileID: 6225409804375158808}
+  - component: {fileID: 4633395683988404500}
+  - component: {fileID: -3765815309733641309}
+  - component: {fileID: 3818467094399908815}
+  - component: {fileID: -6862722323212855262}
+  - component: {fileID: 391480502515578806}
   m_Layer: 0
   m_Name: EditModes
   m_TagString: Untagged
@@ -45,6 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeOnSwitch: []
+  menuButtons:
+    save: {fileID: 0}
+    load: {fileID: 0}
+    place: {fileID: 0}
 --- !u!114 &6225409804375158808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,3 +77,82 @@ MonoBehaviour:
     UP: 113
     DOWN: 101
     mouseSensitivityAxes: {x: 1, y: -1}
+--- !u!114 &4633395683988404500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225409804375158809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3798b0153da4c45bc07956d06a7937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeOnSwitch: []
+  buttons:
+    place: {fileID: 0}
+    delete: {fileID: 0}
+    moveX: {fileID: 0}
+    moveY: {fileID: 0}
+    moveZ: {fileID: 0}
+    rotateX: {fileID: 0}
+    rotateY: {fileID: 0}
+    rotateZ: {fileID: 0}
+    scaleX: {fileID: 0}
+    scaleY: {fileID: 0}
+    scaleZ: {fileID: 0}
+--- !u!114 &-3765815309733641309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225409804375158809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc7645684323034382b2298417a2d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeOnSwitch: []
+  backButton: {fileID: 0}
+--- !u!114 &3818467094399908815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225409804375158809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e056c05cddaed6c4c8911042937b7b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeOnSwitch: []
+  backButton: {fileID: 0}
+--- !u!114 &-6862722323212855262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225409804375158809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c3e8991fcd486498d5efe1ad08c16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeOnSwitch: []
+--- !u!114 &391480502515578806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225409804375158809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0130ca80adbf80469e28f3f410ad4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeOnSwitch: []

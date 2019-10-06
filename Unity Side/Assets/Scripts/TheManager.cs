@@ -38,7 +38,7 @@ public sealed class TheManager
 
     #region COMMAND_HANDLER
     int CurrentCommand = -1;
-    int undoLimit = 50;
+    int undoLimit = 1000;
     public int UndoLimit
     {
         get { return undoLimit; }

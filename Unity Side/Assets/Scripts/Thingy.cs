@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public sealed class Thingy : MonoBehaviour
+public class Thingy : MonoBehaviour
 {
     [SerializeField]
     TypeOfThingy tt = TypeOfThingy.Test1;
@@ -40,6 +40,11 @@ public sealed class Thingy : MonoBehaviour
     {
         thingyActive = !thingyActive;
     }
+
+    public virtual bool Deletable()
+    {
+        return true;
+    }
 }
 
 public enum TypeOfThingy
@@ -55,5 +60,7 @@ public enum TypeOfThingy
     WaterTower,
     Rock1,
     Rock2,
-    Rock3
+    Rock3,
+    Player,
+    Goal
 }
