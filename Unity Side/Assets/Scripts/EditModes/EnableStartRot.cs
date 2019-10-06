@@ -85,6 +85,8 @@ public class EnableStartRot : EdittingMode
     {
         if (editee == null || !editee.gameObject.activeInHierarchy)
         {
+            if (editee != null)
+                editee.transform.localRotation = startRot;
             GoBack();
             return false;
         }

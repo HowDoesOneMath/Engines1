@@ -81,6 +81,8 @@ public class EnableStartPos : EdittingMode
     {
         if (editee == null || !editee.gameObject.activeInHierarchy)
         {
+            if (editee != null)
+                editee.transform.localPosition = startPos;
             GoBack();
             return false;
         }
