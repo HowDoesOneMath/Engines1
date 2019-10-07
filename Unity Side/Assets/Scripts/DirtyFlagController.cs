@@ -72,35 +72,6 @@ public class DirtyFlagController : MonoBehaviour
         if (chosen && editMode != null)
         {
             CheckPrior();
-            //if (Input.GetKeyUp(KeyCode.P))
-            //{
-            //    FileSave fs = new FileSave("ThisIsIt");
-            //    fs.Save();
-            //}
-            //if (Input.GetKeyUp(KeyCode.O))
-            //{
-            //    FileSave fs = new FileSave("ThisIsIt");
-            //    fs.Save();
-            //}
-            //if (Input.GetKeyUp(KeyCode.R))
-            //{
-            //    TheManager.TM.Redo();
-            //}
-            //if (Input.GetKeyUp(KeyCode.U))
-            //{
-            //    TheManager.TM.Undo();
-            //}
-            //if (editMode == null)
-            //{
-            //    ButtonReceiving();
-            //}
-            //else
-            //{
-            //    if (!editMode.PseudoUpdate())
-            //    {
-            //        editMode = null;
-            //    }
-            //}
             editMode.PseudoUpdate();
         }
     }
