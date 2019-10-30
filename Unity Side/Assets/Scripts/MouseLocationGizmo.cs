@@ -86,6 +86,15 @@ public class MouseLocationGizmo : MonoBehaviour
         return targettedObject;
     }
 
+    private void Update()
+    {
+        if (cam != null)
+        {
+            transform.position = gizmoPseudoPos;
+            transform.localScale = Vector3.one * scale * (gizmoPseudoPos - cam.position).magnitude;
+        }
+    }
+
     public bool CastIntoAll(Camera raycam)
     {
         float dist = 0f;
@@ -115,14 +124,14 @@ public class MouseLocationGizmo : MonoBehaviour
         return mouseHit;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (gameObject.activeInHierarchy && mouseHit)
-        {
-            if (wireFrame && isInTranslate)
-                Gizmos.DrawWireMesh(me, gizmoPos, gizmoRot, gizmoScale);
-            Gizmos.color = Color.white;
-            Gizmos.DrawSphere(gizmoPseudoPos, scale * (gizmoPseudoPos - cam.position).magnitude);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (gameObject.activeInHierarchy && mouseHit)
+    //    {
+    //        if (wireFrame && isInTranslate)
+    //            Gizmos.DrawWireMesh(me, gizmoPos, gizmoRot, gizmoScale);
+    //        Gizmos.color = Color.white;
+    //        Gizmos.DrawSphere(gizmoPseudoPos, scale * (gizmoPseudoPos - cam.position).magnitude);
+    //    }
+    //}
 }

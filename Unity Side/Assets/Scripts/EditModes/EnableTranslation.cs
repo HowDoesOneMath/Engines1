@@ -21,12 +21,18 @@ public class EnableTranslation : EdittingMode
 
     public Buttons buttons;
 
-    public void SetEnableTranslation(DirtyFlagController controller, EdittingMode prev, List<GameObject> setToActive, Thingy toBeEditted, MeshFilter[] thingyMeshes)
+    public float FlashTimer = 1f;
+    float flashing = 0f;
+    public Material flashColor;
+    bool colorSwap = false;
+
+    public void SetEnableTranslation(DirtyFlagController controller, EdittingMode prev, List<GameObject> setToActive, Thingy toBeEditted, MeshFilter[] thingyMeshes, Material flash)
     {
         SetEdittingMode(controller, prev, setToActive);
         editee = toBeEditted;
         mf = thingyMeshes;
 
+        flashColor = flash;
         dcf.mLoc.isInTranslate = true;
         buttons = dcf.modes.trans.buttons;
     }
@@ -75,6 +81,7 @@ public class EnableTranslation : EdittingMode
     {
         if (Input.GetMouseButtonUp(TheManager.TM.LEFT_MOUSE))
         {
+            editee.GetComponentInChildren<MeshRenderer>().material = editee.myMat;
             Ray mray = dcf.worldCam.ScreenPointToRay(Input.mousePosition);
 
             if (!TranslationMode())
@@ -188,5 +195,26 @@ public class EnableTranslation : EdittingMode
             return false;
         }
         return true;
+    }
+
+    private void Update()
+    {
+        if (editee != null)
+        { 
+            flashing += Time.deltaTime;
+            while (flashing > FlashTimer)
+            {
+                flashing -= FlashTimer;
+                colorSwap = !colorSwap;
+                if (colorSwap)
+                {
+                    editee.GetComponentInChildren<MeshRenderer>().material = flashColor;
+                }
+                else
+                {
+                    editee.GetComponentInChildren<MeshRenderer>().material = editee.myMat;
+                }
+            }
+        }
     }
 }

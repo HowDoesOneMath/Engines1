@@ -16,7 +16,10 @@ public class EnableStartRot : EdittingMode
         startRot = toBeEditted.transform.localRotation;
         mPosInitial = Input.mousePosition;
         objectOnScreen = dcf.worldCam.WorldToScreenPoint(toBeEditted.transform.position);
+        objectOnScreen.z = 0f;
         finalRotation = startRot;
+
+        //Debug.Log(objectOnScreen);
 
         editee = toBeEditted;
     }
@@ -54,11 +57,12 @@ public class EnableStartRot : EdittingMode
             return false;
         }
 
+        float sin = Mathf.Asin(Vector3.Dot(Vector3.Cross((mPosInitial - objectOnScreen).normalized, (Input.mousePosition - objectOnScreen).normalized), Vector3.forward)) * Mathf.Rad2Deg;
+        sin = Vector3.Dot((Input.mousePosition - objectOnScreen), (mPosInitial - objectOnScreen)) > 0 ? sin : 180f - sin;
+
         finalRotation = startRot;
-        finalRotation = Quaternion.FromToRotation(
-            (dcf.worldCam.transform.rotation) * (mPosInitial - objectOnScreen).normalized,
-            (dcf.worldCam.transform.rotation) * (Input.mousePosition - objectOnScreen).normalized
-            ) * finalRotation;
+        Quaternion qTemp = dcf.worldCam.transform.rotation;
+        finalRotation = qTemp * Quaternion.Euler(0, 0, sin) * Quaternion.Inverse(qTemp) * finalRotation;
 
         return base.PseudoUpdate();
     }

@@ -10,8 +10,11 @@ public class Thingy : MonoBehaviour
     public TypeOfThingy tot { get { return tt; } }
     public bool thingyActive { get; set; } = false;
 
+    public Material myMat { get; set; }
+
     private void Awake()
     {
+        myMat = GetComponentInChildren<MeshRenderer>().material;
         PseudoAwake();
         PoolQueue.PQ.AddThingToQueue(this);
     }
@@ -30,6 +33,7 @@ public class Thingy : MonoBehaviour
     {
         if (thingyActive)
         {
+            GetComponentInChildren<MeshRenderer>().material = myMat;
             Flip();
             gameObject.SetActive(false);
             TheManager.TM.Thingies.Remove(this);

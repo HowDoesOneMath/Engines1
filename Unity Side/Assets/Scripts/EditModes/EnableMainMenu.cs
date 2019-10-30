@@ -126,7 +126,7 @@ public class EnableMainMenu : EdittingMode
         {
             EnableTranslation trans = gameObject.AddComponent<EnableTranslation>();
             DeactivateOnSwitch();
-            trans.SetEnableTranslation(dcf, this, dcf.modes.trans.activeOnSwitch, t, t.GetComponentsInChildren<MeshFilter>());
+            trans.SetEnableTranslation(dcf, this, dcf.modes.trans.activeOnSwitch, t, t.GetComponentsInChildren<MeshFilter>(), dcf.modes.trans.flashColor);
             return false;
         }
         return true;
